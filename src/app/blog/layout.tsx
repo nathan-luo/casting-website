@@ -1,17 +1,22 @@
-import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { Logo } from '@/components/ui/Logo'
-import { HeroSection } from '@/components/HeroSection'
+import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 
-export default function Home() {
+export default function BlogLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <>
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-gray-950/80 backdrop-blur-md border-b border-gray-800">
         <Container>
           <div className="flex items-center justify-between h-16">
-            <Logo size="sm" />
+            <Link href="/">
+              <Logo size="sm" />
+            </Link>
             <div className="hidden md:flex items-center gap-8">
               <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
                 About
@@ -19,7 +24,7 @@ export default function Home() {
               <Link href="/projects" className="text-gray-400 hover:text-white transition-colors">
                 Projects
               </Link>
-              <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">
+              <Link href="/blog" className="text-white transition-colors">
                 Blog
               </Link>
               <a
@@ -35,8 +40,10 @@ export default function Home() {
         </Container>
       </nav>
 
-      {/* Hero Section */}
-      <HeroSection />
+      {/* Main Content */}
+      <main className="min-h-screen">
+        {children}
+      </main>
 
       {/* Footer */}
       <footer className="py-12 border-t border-gray-800">
@@ -47,6 +54,9 @@ export default function Home() {
               <span className="text-gray-400">© 2024 Casting</span>
             </div>
             <div className="flex items-center gap-6">
+              <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+                Home
+              </Link>
               <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">
                 Blog
               </Link>
