@@ -8,21 +8,45 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Casting - Building AI Leverage",
-  description: "A student-founded applied AI lab documenting and delivering the technology for autonomous AI organizations.",
-  keywords: ["AI", "autonomous organizations", "machine learning", "DSCubed", "unified data layer"],
-  authors: [{ name: "Casting Team" }],
+  title: "Casting - Student Blog on AI & Innovation",
+  description: "A student-driven blog exploring artificial intelligence, technology, and innovation through research, experiments, and collaborative learning.",
+  keywords: ["AI", "student blog", "machine learning", "technology", "innovation", "research", "artificial intelligence", "student projects", "tech education"],
+  authors: [{ name: "Casting Student Community" }],
   openGraph: {
-    title: "Casting - Building AI Leverage",
-    description: "Forging autonomous AI organizations through unified data layers and intelligent action loops.",
+    title: "Casting - Student Blog on AI & Innovation",
+    description: "Exploring AI, technology, and innovation through student perspectives. Join our community of learners pushing the boundaries of what's possible.",
     url: "https://casting.systems",
-    siteName: "Casting",
+    siteName: "Casting Student Blog",
     type: "website",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Casting Student Blog",
+      }
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Casting - Building AI Leverage",
-    description: "Forging autonomous AI organizations through unified data layers and intelligent action loops.",
+    title: "Casting - Student Blog on AI & Innovation",
+    description: "Exploring AI, technology, and innovation through student perspectives. Join our community of learners pushing the boundaries of what's possible.",
+    images: ["/logo.png"],
+    creator: "@casting_ai",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "verification-token-here",
   },
 };
 

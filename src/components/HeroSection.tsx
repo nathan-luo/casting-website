@@ -54,7 +54,7 @@ export function HeroSection() {
 
       <Container className="relative z-10">
         <motion.h1
-          className="text-6xl md:text-8xl font-bold tracking-tight"
+          className="text-6xl md:text-8xl font-bold tracking-tight mb-6"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -65,12 +65,12 @@ export function HeroSection() {
         </motion.h1>
         
         <motion.p
-          className="mt-6 text-xl md:text-2xl text-gray-300 font-light tracking-wide"
+          className="text-xl md:text-2xl text-gray-300 font-light tracking-wide max-w-xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
-          Building AI Leverage
+          Student perspectives on AI and technology
         </motion.p>
 
         <motion.div
@@ -79,13 +79,14 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
         >
-          <Button variant="primary" size="lg" href="/about">
-            Learn More
+          <Button variant="primary" size="lg" href="/blog">
+            Explore Articles
           </Button>
-          <Button variant="ghost" size="lg" href="/blog">
-            Read Blog →
+          <Button variant="ghost" size="lg" href="/about">
+            About Our Mission →
           </Button>
         </motion.div>
+
       </Container>
     </section>
   )

@@ -1,44 +1,40 @@
-'use client'
-
 import { Container } from '@/components/ui/Container'
 import { Logo } from '@/components/ui/Logo'
-import { Badge } from '@/components/ui/Badge'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 
+// Sample projects data - easy to edit and extend
 const projects = [
   {
-    title: "Autonomous AI Organization Platform",
-    status: "In Development",
-    description: "Building the core infrastructure for organizations that can sense, decide, and act autonomously.",
-    tags: ["AI", "Architecture", "Systems"],
-    highlights: [
-      "Unified data layer capturing organizational knowledge",
-      "Intelligent agent orchestration system",
-      "Real-time decision making capabilities"
-    ]
-  },
-  {
-    title: "Casting Lab",
+    id: 1,
+    title: "AI Agent Swarm",
+    description: "Multi-agent system for collaborative problem solving",
     status: "Active",
-    description: "Our experimental playground where we test cutting-edge AI concepts on real organizational challenges.",
-    tags: ["Research", "Experimentation"],
-    highlights: [
-      "Testing ground for new AI architectures",
-      "Live experiments with partner organizations",
-      "Open-source research outputs"
-    ]
+    tech: ["Python", "LangChain", "GPT-4"],
+    github: "https://github.com/casting-ai/agent-swarm"
   },
   {
-    title: "Agent Memory Systems",
+    id: 2,
+    title: "Memory Architecture",
+    description: "Persistent memory system for LLM applications",
+    status: "In Progress",
+    tech: ["TypeScript", "Vector DB", "React"],
+    github: "https://github.com/casting-ai/memory-arch"
+  },
+  {
+    id: 3,
+    title: "AutoGPT Extension",
+    description: "Custom plugins for autonomous AI agents",
+    status: "Complete",
+    tech: ["Python", "AutoGPT", "Docker"],
+    github: "https://github.com/casting-ai/autogpt-ext"
+  },
+  {
+    id: 4,
+    title: "Ethics Framework",
+    description: "Governance tools for AI decision-making",
     status: "Research",
-    description: "Developing memory architectures that allow AI agents to learn and adapt from organizational context.",
-    tags: ["ML", "Memory", "Context"],
-    highlights: [
-      "Long-term memory for AI agents",
-      "Context-aware decision making",
-      "Organizational learning loops"
-    ]
+    tech: ["Python", "Ethics", "Governance"],
+    github: "https://github.com/casting-ai/ethics"
   }
 ]
 
@@ -46,162 +42,117 @@ export default function ProjectsPage() {
   return (
     <>
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-gray-950/80 backdrop-blur-md border-b border-gray-800">
+      <nav className="fixed top-0 w-full z-50 bg-gray-950/90 backdrop-blur-xl border-b border-gray-800/50">
         <Container>
           <div className="flex items-center justify-between h-16">
-            <Link href="/">
+            <Link href="/" className="transition-transform hover:scale-105">
               <Logo size="sm" />
             </Link>
             <div className="hidden md:flex items-center gap-8">
-              <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
+              <Link href="/about" className="text-gray-400 hover:text-orange-400 transition-colors font-medium">
                 About
               </Link>
-              <Link href="/projects" className="text-white transition-colors">
+              <Link href="/projects" className="text-orange-400 font-medium">
                 Projects
               </Link>
-              <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">
-                Blog
+              <Link href="/blog" className="text-gray-400 hover:text-orange-400 transition-colors font-medium">
+                Articles
               </Link>
-              <a
-                href="https://github.com/casting-ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                GitHub
-              </a>
             </div>
           </div>
         </Container>
       </nav>
 
-      <section className="min-h-screen py-20">
+      {/* Main Content */}
+      <main className="pt-32 pb-20 min-h-screen">
         <Container>
-          <div className="max-w-3xl mx-auto pt-12">
-            {/* Main article card */}
-            <article className="bg-gray-900/50 border border-gray-800 rounded-2xl overflow-hidden backdrop-blur-sm">
-              {/* Header section */}
-              <div className="border-b border-gray-800 p-8 md:p-12">
-                <div className="max-w-2xl mx-auto text-center">
-                  <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
-                    Our Projects
-                  </h1>
-                  
-                  <p className="text-lg text-gray-400">
-                    Explore the projects where we're pushing the boundaries of what's possible with autonomous AI systems.
-                  </p>
-                </div>
-              </div>
+          <div className="max-w-6xl mx-auto">
+            {/* Page Header */}
+            <div className="mb-12">
+              <h1 className="text-5xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                  Student Projects
+                </span>
+              </h1>
+              <p className="text-gray-400 text-lg">
+                Open source experiments and tools built by our community
+              </p>
+            </div>
 
-              {/* Content section */}
-              <div className="p-8 md:p-12">
-                <div className="max-w-2xl mx-auto">
-                  <div className="space-y-8">
-                    {projects.map((project, index) => (
-                      <motion.div
-                        key={project.title}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className="border-b border-gray-800 last:border-0 pb-8 last:pb-0"
+            {/* Projects Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {projects.map((project) => (
+                <div 
+                  key={project.id}
+                  className="bg-gray-900/30 border border-gray-800 rounded-xl p-6 hover:bg-gray-900/50 transition-all hover:border-gray-700"
+                >
+                  {/* Status Badge */}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className={`text-xs font-medium px-3 py-1 rounded-full ${
+                      project.status === 'Active' ? 'bg-green-400/10 text-green-400' :
+                      project.status === 'Complete' ? 'bg-blue-400/10 text-blue-400' :
+                      project.status === 'Research' ? 'bg-purple-400/10 text-purple-400' :
+                      'bg-yellow-400/10 text-yellow-400'
+                    }`}>
+                      {project.status}
+                    </span>
+                  </div>
+
+                  {/* Title & Description */}
+                  <h2 className="text-xl font-semibold text-white mb-2">
+                    {project.title}
+                  </h2>
+                  <p className="text-gray-400 mb-4">
+                    {project.description}
+                  </p>
+
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tech.map((tech) => (
+                      <span 
+                        key={tech}
+                        className="text-xs text-gray-500 bg-gray-800/50 px-2 py-1 rounded"
                       >
-                        <div className="flex items-start justify-between mb-4">
-                          <h2 className="text-xl font-semibold text-white">
-                            {project.title}
-                          </h2>
-                          <Badge variant={project.status === "Active" ? "success" : "default"}>
-                            {project.status}
-                          </Badge>
-                        </div>
-                        
-                        <p className="text-gray-400 mb-4">
-                          {project.description}
-                        </p>
-                        
-                        <div className="mb-4">
-                          <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                            Key Features
-                          </h3>
-                          <ul className="space-y-1">
-                            {project.highlights.map((highlight) => (
-                              <li key={highlight} className="flex items-start gap-2 text-sm text-gray-300">
-                                <span className="text-orange-400 mt-0.5">•</span>
-                                <span>{highlight}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        
-                        <div className="flex flex-wrap gap-2">
-                          {project.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="px-2.5 py-1 text-xs font-medium text-gray-500 rounded-full border border-gray-700"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </motion.div>
+                        {tech}
+                      </span>
                     ))}
                   </div>
-                </div>
-              </div>
 
-              {/* CTA section */}
-              <div className="border-t border-gray-800 p-8 md:p-12">
-                <div className="text-center">
-                  <h3 className="text-xl font-semibold mb-4">Want to Contribute?</h3>
-                  <p className="text-gray-400 mb-6 max-w-xl mx-auto">
-                    Our projects are open to collaboration. Whether you're interested in research, 
-                    development, or testing, there's a place for you in our mission.
-                  </p>
-                  <Link
-                    href="https://github.com/casting-ai"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
+                  {/* GitHub Link */}
+                  <a 
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors text-sm"
                   >
-                    View on GitHub
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
                     </svg>
-                  </Link>
+                    View on GitHub
+                  </a>
                 </div>
-              </div>
-            </article>
-          </div>
-        </Container>
-      </section>
+              ))}
+            </div>
 
-      {/* Footer */}
-      <footer className="py-12 border-t border-gray-800">
-        <Container>
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <Logo size="sm" showText={false} />
-              <span className="text-gray-400">© 2024 Casting</span>
-            </div>
-            <div className="flex items-center gap-6">
-              <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">
-                Blog
-              </Link>
-              <a
+            {/* Call to Action */}
+            <div className="mt-16 text-center p-8 bg-gray-900/30 border border-gray-800 rounded-xl">
+              <h2 className="text-2xl font-semibold text-white mb-4">
+                Have a project idea?
+              </h2>
+              <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
+                We're always looking for passionate students to contribute. 
+                Share your ideas and collaborate with our community.
+              </p>
+              <Link 
                 href="https://github.com/casting-ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-colors font-medium"
               >
-                GitHub
-              </a>
-              <a
-                href="mailto:hello@casting.systems"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                Contact
-              </a>
+                Join Us on GitHub →
+              </Link>
             </div>
           </div>
         </Container>
-      </footer>
+      </main>
     </>
   )
 }
